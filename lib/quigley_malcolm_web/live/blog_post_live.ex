@@ -1,14 +1,19 @@
 defmodule QuigleyMalcolmWeb.BlogPostLive do
   use QuigleyMalcolmWeb, :live_view
 
+  alias QuigleyMalcolm.BlogPosts
+
   def mount(%{"slug" => slug}, _session, socket) do
-    socket = assign(socket, :slug, slug)
+    IO.inspect(slug)
+    blog_post = BlogPosts.get_blog_post_by_slug(slug)
+    socket = assign(socket, :blog_post, blog_post)
     {:ok, socket}
   end
 
   def render(assigns) do
     ~L"""
-      <h1>The slug is <%= @slug %></h1>
+      <h1><%= @blog_post.title %></h1>
+      <div><%= @blog_post.body %></div>
     """
   end
 end
