@@ -3,9 +3,9 @@ defmodule QuigleyMalcolm.Repo.Migrations.CreateBlogPost do
 
   def change do
     create table(:blog_post) do
-      add :title, :string
-      add :slug, :string
-      add :body, :string
+      add :title, :string, null: false
+      add :slug, :string, null: false
+      add :body, :string, size: 8192, null: false
 
       timestamps()
     end
