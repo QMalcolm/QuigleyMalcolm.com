@@ -9,3 +9,13 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias QuigleyMalcolm.Repo
+alias QuigleyMalcolm.BlogPosts.BlogPost
+
+for _ <- 0..100 do
+  BlogPost.changeset(
+    %BlogPost{},
+    %{title: Faker.Lorem.sentence, body: Faker.Lorem.paragraphs(3) |> Enum.join("\n")}
+  ) |> Repo.insert!()
+end
