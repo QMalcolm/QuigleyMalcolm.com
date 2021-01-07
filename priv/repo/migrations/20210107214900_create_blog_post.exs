@@ -10,5 +10,6 @@ defmodule QuigleyMalcolm.Repo.Migrations.CreateBlogPost do
       timestamps()
     end
 
+    create unique_index(:blog_post, [:slug])
   end
 end
