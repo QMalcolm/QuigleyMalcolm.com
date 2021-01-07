@@ -22,7 +22,7 @@ defmodule QuigleyMalcolm.BlogPosts do
   end
 
   @doc """
-  Gets a single blog_post.
+  Gets a single blog_post by id.
 
   Raises `Ecto.NoResultsError` if the Blog post does not exist.
 
@@ -36,6 +36,22 @@ defmodule QuigleyMalcolm.BlogPosts do
 
   """
   def get_blog_post!(id), do: Repo.get!(BlogPost, id)
+
+  @doc """
+  Gets a single blog_post by slug.
+
+  Raises `Ecto.NoResultsError` if the Blog post does not exist.
+
+  ## Examples
+
+      iex> get_blog_post!("this-is-a-slug")
+      %BlogPost{}
+
+      iex> get_blog_post!("non-existent-slug")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_blog_post_by_slug(slug), do: Repo.get_by(BlogPost, slug: slug)
 
   @doc """
   Creates a blog_post.
