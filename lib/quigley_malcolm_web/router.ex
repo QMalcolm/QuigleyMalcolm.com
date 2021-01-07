@@ -18,6 +18,8 @@ defmodule QuigleyMalcolmWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/blog", BlogLive
+    live "/blog/:slug", BlogPostLive
   end
 
   # Other scopes may use custom stacks.
