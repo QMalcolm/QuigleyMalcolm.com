@@ -13,7 +13,7 @@ defmodule QuigleyMalcolmWeb.BlogPostLive do
   def render(assigns) do
     ~L"""
       <h1><%= @blog_post.title %></h1>
-      <div><%= @blog_post.body %></div>
+      <%= raw(Earmark.as_html!(@blog_post.body)) %>
     """
   end
 end
