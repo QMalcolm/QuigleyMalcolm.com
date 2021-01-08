@@ -22,6 +22,32 @@ defmodule QuigleyMalcolm.BlogPosts do
   end
 
   @doc """
+  Returns a list of blog_posts matching the given `criteria`.
+
+  Example Criteria:
+
+  [
+   paginate: %{page: 2, per_page: 5},
+   sort: %{sort_by: :item, sort_order: :asc}
+  ]
+  """
+
+  def list_blog_posts(criteria) when is_list(criteria) do
+    query = from(p in BlogPost)
+
+    Enum.reduce(criteria, query, fn
+      {:paginate, %{page: page, per_page: per_page}}, query ->
+        from q in query,
+          offset: ^((page - 1) * per_page),
+          limit: ^per_page
+
+      {:sort, %{sort_by: sort_by, sort_order: sort_order}}, query ->
+        from q in query, order_by: [{^sort_order, ^sort_by}]
+    end)
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single blog_post by id.
 
   Raises `Ecto.NoResultsError` if the Blog post does not exist.
@@ -103,6 +129,19 @@ defmodule QuigleyMalcolm.BlogPosts do
   """
   def delete_blog_post(%BlogPost{} = blog_post) do
     Repo.delete(blog_post)
+  end
+
+  @doc """
+  Count how many blog_posts there are.
+
+  ## Examples
+
+    iex> count_blog_posts()
+    15
+
+  """
+  def count_blog_posts do
+    Repo.one(from p in BlogPost, select: count(p.id))
   end
 
   @doc """
