@@ -38,10 +38,31 @@ defmodule QuigleyMalcolmWeb.BlogLive do
               post.slug)
           %>
         </div>
-
       <% end %>
+      <%= pagination_link(
+        @socket,
+        "Previous",
+        @options.page - 1,
+        @options.per_page) %>
+      <%= pagination_link(
+        @socket,
+        "Next",
+        @options.page + 1,
+        @options.per_page) %>
     """
   end
 
-
+  defp pagination_link(socket, text, page, per_page, class \\ "") do
+    live_patch(
+      text,
+      to:
+        Routes.live_path(
+          socket,
+          __MODULE__,
+          page: page,
+          per_page: per_page
+        ),
+      class: class
+    )
+  end
 end
