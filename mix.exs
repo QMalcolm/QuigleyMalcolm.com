@@ -48,7 +48,8 @@ defmodule QuigleyMalcolm.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:faker, "~> 0.16.0"},
-      {:slugger, "~> 0.3.0"}
+      {:slugger, "~> 0.3.0"},
+      {:earmark, "~> 1.4"}
     ]
   end
 
