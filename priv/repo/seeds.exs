@@ -12,10 +12,11 @@
 
 alias QuigleyMalcolm.Repo
 alias QuigleyMalcolm.BlogPosts.BlogPost
+alias QuigleyMalcolm.SeedHelpers
 
 for _ <- 0..100 do
   BlogPost.changeset(
     %BlogPost{},
-    %{title: Faker.Lorem.sentence, body: Faker.Lorem.paragraphs(3) |> Enum.join("\n")}
+    %{title: Faker.Lorem.sentence, body: SeedHelpers.gen_blog_markdown_body()}
   ) |> Repo.insert!()
 end
