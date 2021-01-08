@@ -32,7 +32,7 @@ defmodule QuigleyMalcolm.BlogPostsTest do
     test "create_blog_post/1 with valid data creates a blog_post" do
       assert {:ok, %BlogPost{} = blog_post} = BlogPosts.create_blog_post(@valid_attrs)
       assert blog_post.body == "some body"
-      assert blog_post.slug == "some slug"
+      assert blog_post.slug == "some-title"
       assert blog_post.title == "some title"
     end
 
@@ -44,7 +44,7 @@ defmodule QuigleyMalcolm.BlogPostsTest do
       blog_post = blog_post_fixture()
       assert {:ok, %BlogPost{} = blog_post} = BlogPosts.update_blog_post(blog_post, @update_attrs)
       assert blog_post.body == "some updated body"
-      assert blog_post.slug == "some updated slug"
+      assert blog_post.slug == "some-updated-title"
       assert blog_post.title == "some updated title"
     end
 

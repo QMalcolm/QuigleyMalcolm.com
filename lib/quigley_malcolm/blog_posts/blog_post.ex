@@ -14,7 +14,7 @@ defmodule QuigleyMalcolm.BlogPosts.BlogPost do
   def changeset(blog_post, attrs) do
     blog_post
     |> cast(attrs, [:title, :body])
-    |> put_change(:slug, Slugger.slugify_downcase(attrs[:title]))
+    |> put_change(:slug, Slugger.slugify_downcase(attrs[:title] || ""))
     |> validate_required([:title, :slug, :body])
   end
 end
