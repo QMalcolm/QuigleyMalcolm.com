@@ -17,7 +17,7 @@ defmodule QuigleyMalcolmWeb.Router do
   scope "/", QuigleyMalcolmWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", PageLive
     live "/blog", BlogLive
     live "/blog/:slug", BlogPostLive
   end
