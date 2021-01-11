@@ -4,10 +4,13 @@ defmodule QuigleyMalcolmWeb.BlogPostLive do
   alias QuigleyMalcolm.BlogPosts
 
   def mount(%{"slug" => slug}, _session, socket) do
-    IO.inspect(slug)
     blog_post = BlogPosts.get_blog_post_by_slug(slug)
-    socket = assign(socket, :blog_post, blog_post)
-    {:ok, socket}
+    socket = assign(
+      socket,
+      blog_post: blog_post,
+      page_title: blog_post.title
+    )
+    {:ok, socket }
   end
 
   def render(assigns) do

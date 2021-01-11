@@ -3,7 +3,13 @@ defmodule QuigleyMalcolmWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, query: "", results: %{})}
+    socket = assign(
+      socket,
+      query: "",
+      results: %{},
+      page_title: "Home"
+    )
+    {:ok, socket}
   end
 
   @impl true

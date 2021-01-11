@@ -5,7 +5,11 @@ defmodule QuigleyMalcolmWeb.BlogLive do
 
   def mount(_params, _session, socket) do
     num_blog_posts = BlogPosts.count_blog_posts()
-    socket = assign(socket, :num_blog_posts, num_blog_posts)
+    socket = assign(
+      socket,
+      num_blog_posts: num_blog_posts,
+      page_title: "Blog"
+    )
     {:ok, socket, temporary_assigns: [blog_posts: []]}
   end
 
